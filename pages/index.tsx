@@ -1,9 +1,10 @@
+import { Typography } from '@mui/material';
 import type { NextPage } from 'next';
 
 const HomePage: NextPage = () => {
     return (
         <>
-            <h1>Open Jira</h1>
+            <Typography>Open Jira</Typography>
         </>
     );
 };
