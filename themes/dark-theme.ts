@@ -7,5 +7,16 @@ export const darkTheme = createTheme({
         secondary: teal,
         error: red,
     },
-    components: {},
+    components: {
+        MuiAppBar: {
+            defaultProps: {
+                elevation: 0,
+            },
+            styleOverrides: {
+                root: {
+                    backgroundColor: '#212121',
+                },
+            },
+        },
+    },
 });
