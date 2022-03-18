@@ -1,12 +1,15 @@
-import { ChangeEvent, FocusEvent, FocusEventHandler, MouseEventHandler, useState } from 'react';
+import { ChangeEvent, FocusEvent, useContext, useState } from 'react';
 import { Box, Button, Divider, Fade, TextField } from '@mui/material';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
+
+import { EntriesContext } from '../../context/entries';
 
 export const NewEntry = () => {
     const [show, setShow] = useState(false);
     const [value, setValue] = useState('');
     const [touched, setTouched] = useState(false);
+    const { addNewEntry } = useContext(EntriesContext);
 
     const handleInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
         setValue(target.value);
@@ -16,16 +19,16 @@ export const NewEntry = () => {
         !(relatedTarget && relatedTarget.id === 'btnCancel') && setTouched(true);
     };
 
-    const handleSaveClick = () => {
-        if (!value) return;
-
-        console.log('Saving:', value);
+    const resetAll = () => {
+        setShow(false);
+        setValue('');
+        setTouched(false);
     };
 
-    const handleCancelClick = () => {
-        setShow(false);
-        setTouched(false);
-        setValue('');
+    const handleSaveClick = () => {
+        if (!value) return;
+        addNewEntry(value);
+        resetAll();
     };
 
     return (
@@ -55,12 +58,7 @@ export const NewEntry = () => {
                         >
                             Guardar
                         </Button>
-                        <Button
-                            variant="text"
-                            color="inherit"
-                            onClick={handleCancelClick}
-                            id="btnCancel"
-                        >
+                        <Button variant="text" color="inherit" onClick={resetAll} id="btnCancel">
                             Cancelar
                         </Button>
                     </Box>
