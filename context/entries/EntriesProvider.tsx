@@ -56,7 +56,11 @@ export const EntriesProvider: FC = ({ children }) => {
             status: 'PENDING',
         };
 
-        dispatch({ type: '[Entry] - Add-Entry', payload: entry });
+        dispatch({ type: '[Entry] - Add-Entry', entry });
+    };
+
+    const updateEntry = (entry: Entry) => {
+        dispatch({ type: '[Entry] - Update-Entry', entry });
     };
 
     return (
@@ -64,6 +68,7 @@ export const EntriesProvider: FC = ({ children }) => {
             value={{
                 ...state,
                 addNewEntry,
+                updateEntry,
             }}
         >
             {children}
