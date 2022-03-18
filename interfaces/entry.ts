@@ -1,4 +1,6 @@
-export type EntryStatus = 'PENDING' | 'IN-PROGRESS' | 'DONE';
+export const StatusValues = ['PENDING', 'IN-PROGRESS', 'DONE'] as const;
+
+export type EntryStatus = typeof StatusValues[number];
 
 export interface Entry {
     _id: string;
