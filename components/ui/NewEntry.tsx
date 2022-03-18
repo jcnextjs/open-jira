@@ -4,12 +4,13 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
 import { EntriesContext } from '../../context/entries';
+import { UIContext } from '../../context/ui/UIContext';
 
 export const NewEntry = () => {
-    const [show, setShow] = useState(false);
+    const { setShowNewEntry, showNewEntry } = useContext(UIContext);
+    const { addNewEntry } = useContext(EntriesContext);
     const [value, setValue] = useState('');
     const [touched, setTouched] = useState(false);
-    const { addNewEntry } = useContext(EntriesContext);
 
     const handleInputChange = ({ target }: ChangeEvent<HTMLInputElement>) => {
         setValue(target.value);
@@ -20,7 +21,7 @@ export const NewEntry = () => {
     };
 
     const resetAll = () => {
-        setShow(false);
+        setShowNewEntry(false);
         setValue('');
         setTouched(false);
     };
@@ -33,7 +34,7 @@ export const NewEntry = () => {
 
     return (
         <Box p={1} mb={1} display="flex" flexDirection="column" gap={2}>
-            {show ? (
+            {showNewEntry ? (
                 <>
                     <TextField
                         fullWidth
@@ -70,7 +71,7 @@ export const NewEntry = () => {
                     color="primary"
                     fullWidth
                     startIcon={<AddBoxOutlinedIcon />}
-                    onClick={() => setShow(true)}
+                    onClick={() => setShowNewEntry(true)}
                 >
                     Nueva Tarea
                 </Button>
