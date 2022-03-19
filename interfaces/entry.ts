@@ -5,7 +5,7 @@ export type EntryStatus = typeof StatusValues[number];
 export interface Entry {
     _id: string;
     description: string;
-    createAt: number;
-    updateAt?: number;
+    createdAt: number;
+    updatedAt?: number;
     status: EntryStatus;
 }

@@ -1,4 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+
 import { db } from '../../../db';
 import { EntryModel, IEntry } from '../../../models';
 
@@ -8,8 +9,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     switch (req.method) {
         case 'GET':
             return getEntries(res);
-        //case 'POST':
-        //    return res.status(200).json({ message: 'POST request received.' });
+        case 'POST':
+            return createEntry(req, res);
         default:
             return res.status(400).json({ message: 'Recurso no existe.' });
     }
@@ -19,4 +20,25 @@ const getEntries = async (res: NextApiResponse<Data>) => {
     const entries = await EntryModel.find().sort({ createdAt: 'ascending' });
     await db.disconnect();
     res.status(200).json(entries);
+};
+
+const createEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
+    const { description } = req.body;
+
+    if (!description) {
+        return res.status(400).json({ message: 'La descripción es requerida.' });
+    }
+
+    const entry = new EntryModel({ description });
+    console.log({ entry });
+
+    try {
+        await db.connect();
+        await entry.save();
+        await db.disconnect();
+        return res.status(201).json(entry);
+    } catch (error) {
+        await db.disconnect();
+        return res.status(500).json({ message: 'Error al crear la entrada.' });
+    }
 };
