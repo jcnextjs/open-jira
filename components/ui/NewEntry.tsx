@@ -1,10 +1,10 @@
 import { ChangeEvent, FocusEvent, useContext, useState } from 'react';
-import { Box, Button, Divider, Fade, TextField } from '@mui/material';
+import { Box, Button, Divider, TextField } from '@mui/material';
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import SaveOutlinedIcon from '@mui/icons-material/SaveOutlined';
 
-import { EntriesContext } from '../../context/entries';
-import { UIContext } from '../../context/ui/UIContext';
+import { EntriesContext } from '@app/context/entries';
+import { UIContext } from '@app/context/ui';
 
 export const NewEntry = () => {
     const { setShowNewEntry, showNewEntry } = useContext(UIContext);

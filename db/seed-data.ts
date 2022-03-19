@@ -1,4 +1,4 @@
-import { Entry } from '../interfaces';
+import { Entry } from '@app/interfaces';
 
 type SeedEntry = Omit<Entry, '_id'>;
 

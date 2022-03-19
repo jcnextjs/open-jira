@@ -1,5 +1,4 @@
 import { NextFetchEvent, NextRequest, NextResponse } from 'next/server';
-import mongoose from 'mongoose';
 
 export function middleware(req: NextRequest, ev: NextFetchEvent) {
     const { id = '' } = req.page.params!;

@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { AppBar, IconButton, Toolbar, Typography } from '@mui/material';
 import MenuOutlinedIcon from '@mui/icons-material/MenuOutlined';
-import { UIContext } from '../../context/ui';
+
+import { UIContext } from '@app/context/ui';
 
 export const Navbar = () => {
     const { handleOpenSidebar } = useContext(UIContext);

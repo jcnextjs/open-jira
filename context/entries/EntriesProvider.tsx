@@ -1,9 +1,8 @@
 import { FC, useEffect, useReducer } from 'react';
-import { nanoid } from 'nanoid';
 
-import { entriesApi } from '../../apis';
-import { Entry } from '../../interfaces';
 import { EntriesContext, entriesReducer } from './';
+import { entriesApi } from '@app/apis';
+import { Entry } from '@app/interfaces';
 
 export interface EntriesState {
     entries: Entry[];

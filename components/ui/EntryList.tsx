@@ -1,10 +1,11 @@
 import { DragEvent, FC, useContext } from 'react';
 import { GlobalStyles, List, Paper, darkScrollbar, useTheme } from '@mui/material';
-import { Entry, EntryStatus } from '../../interfaces';
-import { EntryCard } from './';
 
-import { EntriesContext } from '../../context/entries';
-import { UIContext } from '../../context/ui';
+import { EntryCard } from './';
+import { Entry, EntryStatus } from '@app/interfaces';
+
+import { EntriesContext } from '@app/context/entries';
+import { UIContext } from '@app/context/ui';
 
 import styles from './EntryList.module.css';
 

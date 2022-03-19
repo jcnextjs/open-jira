@@ -1,5 +1,5 @@
 import mongoose, { Model, Schema } from 'mongoose';
-import { Entry, StatusValues } from '../interfaces';
+import { Entry, StatusValues } from '@app/interfaces';
 
 export interface IEntry extends Entry {}
 

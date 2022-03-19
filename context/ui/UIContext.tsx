@@ -1,5 +1,6 @@
 import { createContext } from 'react';
-import { UIState } from './UIProvider';
+
+import { UIState } from './';
 
 interface ContextProps extends UIState {
     handleOpenSidebar: () => void;

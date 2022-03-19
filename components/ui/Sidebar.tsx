@@ -13,7 +13,8 @@ import {
 import InboxOutlinedIcon from '@mui/icons-material/InboxOutlined';
 import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-import { UIContext } from '../../context/ui';
+
+import { UIContext } from '@app/context/ui';
 
 const menuItems = ['Inbox', 'Starred', 'Send Email', 'Drafts'];
 

@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import { Card, CardContent, CardHeader, Grid, Typography } from '@mui/material';
+import { Card, CardHeader, Grid } from '@mui/material';
 
-import { Layout } from '../components/layouts';
-import { EntryList, NewEntry } from '../components/ui';
+import { Layout } from '@app/components/layouts';
+import { EntryList, NewEntry } from '@app/components/ui';
 
 const HomePage: NextPage = () => {
     return (

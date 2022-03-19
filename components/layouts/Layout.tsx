@@ -1,7 +1,8 @@
 import React, { FC } from 'react';
 import Head from 'next/head';
 import { Box } from '@mui/material';
-import { Navbar, Sidebar } from '../ui';
+
+import { Navbar, Sidebar } from '@app/components/ui';
 
 interface Props {
     title?: string;
