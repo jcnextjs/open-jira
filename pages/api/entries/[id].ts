@@ -14,6 +14,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 
     switch (req.method) {
+        case 'GET':
+            return getEntry(id, res);
         case 'PUT':
             return updateEntry(id, req, res);
         default:
@@ -21,13 +23,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
     }
 }
 
+const getEntry = async (id: string, res: NextApiResponse<Data>) => {
+    await db.connect();
+    const entry = await EntryModel.findById(id);
+    await db.disconnect();
+
+    return !entry
+        ? res.status(404).json({ message: `La tarea con id = '${id}' no existe.` })
+        : res.status(200).json(entry!);
+};
+
 const updateEntry = async (id: string, req: NextApiRequest, res: NextApiResponse<Data>) => {
     await db.connect();
     const entry = await EntryModel.findById(id);
 
     if (!entry) {
         await db.disconnect();
-        return res.status(404).json({ message: 'La tarea  no existe.' });
+        return res.status(404).json({ message: `La tarea con id = '${id}' no existe.` });
     }
 
     const { description = entry.description, status = entry.status } = req.body;
