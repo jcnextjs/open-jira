@@ -1,15 +1,35 @@
 # OpenJira App
 
-Para ejecutar la aplicación localmente, ejecute el siguiente comando:
+Para ejecutar la aplicación localmente, seguir los siguientes pasos:
 
-```
-docker-compose up -d
-```
+1. **Configurar la base de datos:**
 
-Nota: `-d` es un parámetro opcional que indica que la aplicación se ejecutará en segundo plano.
+    ```bash
+    $ docker-compose up -d
+    ```
 
--   MongoDB URL: `mongodb://localhost:27018/entriesdb`
+    > Nota: `-d` es un parámetro opcional que indica que el contenedor se ejecutará en segundo plano.
 
-## Información de prueba en desarrollo
+2. **Variablers de entorno**
 
-Ejecutar el siguiente endpoint : `http://localhost:3000/api/seed`
+    Copiar el archivo `.env.template` a `.env` y cambiar los valores de las variables de entorno.
+
+    - MongoDB URL (Base de datos local):
+
+        `MONGO_URL=mongodb://localhost:27018/entriesdb`
+
+3. **Instalación de dependencias**
+
+    `yarn install`
+
+4. **Ejecutar la aplicación**
+
+    `yarn dev`
+
+    > Nota: `yarn dev` ejecuta la aplicación en modo desarrollo.
+
+5. **Información (datos) de pruebas**
+
+    Ejecutar el siguiente endpoint : `http://localhost:3000/api/seed`
+
+    > Nota: Este endpoint se debe ejecutar sólo en el entorno de desarrollo, ya que elimina la colección `entries`.
