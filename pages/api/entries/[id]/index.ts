@@ -1,17 +1,12 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-import { db } from '../../../db';
-import { EntryModel, IEntry } from '../../../models';
-import mongoose from 'mongoose';
+import { db } from '../../../../db';
+import { EntryModel, IEntry } from '../../../../models';
 
 type Data = { message: string } | IEntry;
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
     const { id } = req.query as { id: string };
-
-    if (!mongoose.isValidObjectId(id)) {
-        return res.status(400).json({ message: `El id '${id}' no es valido.` });
-    }
 
     switch (req.method) {
         case 'GET':
