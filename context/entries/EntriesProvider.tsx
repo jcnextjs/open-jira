@@ -43,6 +43,22 @@ export const EntriesProvider: FC = ({ children }) => {
         }
     };
 
+    const deleteEntry = async (id: string, notify: boolean = false) => {
+        try {
+            await entriesApi.delete<Entry>(`/entries/${id}`);
+            dispatch({ type: '[Entry] - Delete-Entry', id });
+            notify &&
+                enqueueSnackbar('Tarea eliminada', {
+                    variant: 'info',
+                    autoHideDuration: 1500,
+                    anchorOrigin: {
+                        vertical: 'top',
+                        horizontal: 'right',
+                    },
+                });
+        } catch (e) {}
+    };
+
     const getAllEntries = async () => {
         const { data } = await entriesApi.get<Entry[]>('/entries');
         dispatch({ type: '[Entry] - Get All Entries', entries: data });
@@ -58,6 +74,7 @@ export const EntriesProvider: FC = ({ children }) => {
                 ...state,
                 addNewEntry,
                 updateEntry,
+                deleteEntry,
             }}
         >
             {children}

@@ -30,7 +30,7 @@ interface Props {
 
 const EntryPage: NextPage<Props> = ({ entry }) => {
     const router = useRouter();
-    const { updateEntry } = useContext(EntriesContext);
+    const { updateEntry, deleteEntry } = useContext(EntriesContext);
     const [value, setValue] = useState(entry.description);
     const [status, setStatus] = useState<EntryStatus>(entry.status);
     const [touched, setTouched] = useState(false);
@@ -60,6 +60,11 @@ const EntryPage: NextPage<Props> = ({ entry }) => {
         setTouched(false);
         setValue(entry.description);
         setStatus(entry.status);
+        router.push('/');
+    };
+
+    const handleDeleteClick = () => {
+        deleteEntry(entry._id, true);
         router.push('/');
     };
 
@@ -141,6 +146,7 @@ const EntryPage: NextPage<Props> = ({ entry }) => {
                         backgroundColor: 'error.dark',
                     },
                 }}
+                onClick={handleDeleteClick}
             >
                 <DeleteIcon />
             </IconButton>

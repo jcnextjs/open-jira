@@ -13,6 +13,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
             return getEntry(id, res);
         case 'PUT':
             return updateEntry(id, req, res);
+        case 'DELETE':
+            return deleteEntry(id, res);
         default:
             return res.status(400).json({ message: 'Recurso no existe.' });
     }
@@ -56,4 +58,18 @@ const updateEntry = async (id: string, req: NextApiRequest, res: NextApiResponse
         await db.disconnect();
         return res.status(500).json({ message: error.errors.status.message });
     }
+};
+
+const deleteEntry = async (id: string, res: NextApiResponse<Data>) => {
+    await db.connect();
+    const entry = await EntryModel.findById(id);
+
+    if (!entry) {
+        await db.disconnect();
+        return res.status(404).json({ message: `La tarea con id = '${id}' no existe.` });
+    }
+
+    const deletedEntry = await entry.remove();
+    await db.disconnect();
+    return res.status(200).json(deletedEntry);
 };
