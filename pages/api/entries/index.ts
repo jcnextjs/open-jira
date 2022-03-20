@@ -30,7 +30,6 @@ const createEntry = async (req: NextApiRequest, res: NextApiResponse<Data>) => {
     }
 
     const entry = new EntryModel({ description });
-    console.log({ entry });
 
     try {
         await db.connect();

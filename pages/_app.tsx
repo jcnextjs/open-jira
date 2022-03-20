@@ -1,5 +1,6 @@
 import type { AppProps } from 'next/app';
 import { CssBaseline, ThemeProvider } from '@mui/material';
+import { SnackbarProvider } from 'notistack';
 
 import 'styles/globals.css';
 
@@ -9,14 +10,16 @@ import { UIProvider } from '@app/context/ui';
 
 function MyApp({ Component, pageProps }: AppProps) {
     return (
-        <EntriesProvider>
-            <UIProvider>
-                <ThemeProvider theme={darkTheme}>
-                    <CssBaseline />
-                    <Component {...pageProps} />
-                </ThemeProvider>
-            </UIProvider>
-        </EntriesProvider>
+        <SnackbarProvider maxSnack={4} autoHideDuration={2000}>
+            <EntriesProvider>
+                <UIProvider>
+                    <ThemeProvider theme={darkTheme}>
+                        <CssBaseline />
+                        <Component {...pageProps} />
+                    </ThemeProvider>
+                </UIProvider>
+            </EntriesProvider>
+        </SnackbarProvider>
     );
 }
 
