@@ -23,6 +23,7 @@ import { dbEntries } from '@app/db';
 import { Layout } from '@app/components/layouts';
 import { statusItems, EntryStatus, Entry } from '@app/interfaces';
 import { EntriesContext } from '@app/context/entries';
+import { df } from '@app/utils';
 
 interface Props {
     entry: Entry;
@@ -75,7 +76,7 @@ const EntryPage: NextPage<Props> = ({ entry }) => {
                     <Card>
                         <CardHeader
                             title={`Tarea`}
-                            subheader={`Creada hace: ${entry.createdAt} minutos`}
+                            subheader={`Creada ${df.formatDate(entry.createdAt)}.`}
                         />
 
                         <CardContent>

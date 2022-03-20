@@ -1,10 +1,10 @@
 import { DragEvent, FC, useContext } from 'react';
+import { useRouter } from 'next/router';
 import { Card, CardActionArea, CardActions, CardContent, Typography } from '@mui/material';
 
 import { Entry } from '@app/interfaces';
 import { UIContext } from '@app/context/ui';
-import { useRouter } from 'next/router';
-
+import { df } from '@app/utils';
 interface Props {
     entry: Entry;
 }
@@ -39,7 +39,7 @@ export const EntryCard: FC<Props> = ({ entry }) => {
                     <Typography sx={{ whiteSpace: 'pre-line' }}>{entry.description}</Typography>
                 </CardContent>
                 <CardActions sx={{ display: 'flex', justifyContent: 'end' }}>
-                    <Typography variant="body2">Hace 30 minutos</Typography>
+                    <Typography variant="body2">{df.formatDate(entry.createdAt)}.</Typography>
                 </CardActions>
             </CardActionArea>
         </Card>

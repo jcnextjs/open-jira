@@ -24,7 +24,8 @@
             "@app/db": ["db/index.ts"],
             "@app/interfaces": ["interfaces/index.ts"],
             "@app/models": ["models/index.ts"],
-            "@app/themes": ["themes/index.ts"]
+            "@app/themes": ["themes/index.ts"],
+            "@app/utils": ["utils/index.ts"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
